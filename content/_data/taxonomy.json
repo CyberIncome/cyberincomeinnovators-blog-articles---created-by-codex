@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "ai-automation-foundations",
+    "title": "AI Automation Foundations",
+    "description": "Audience context, strategy, ROI, governance, safe rollout."
+  },
+  {
+    "slug": "n8n-workflows-integrations",
+    "title": "n8n Workflows & Integrations",
+    "description": "Hands-on recipes, nodes/triggers, webhooks, error-handling."
+  },
+  {
+    "slug": "multi-agent-orchestration",
+    "title": "Multi-Agent Systems & Orchestration",
+    "description": "Agent patterns, tool use, queues, evaluation loops."
+  },
+  {
+    "slug": "content-factory-distribution",
+    "title": "Content Factory & Distribution",
+    "description": "Repurposing, social pipelines, briefs, QA, publishing."
+  },
+  {
+    "slug": "monetization-analytics",
+    "title": "Monetization & Analytics",
+    "description": "Affiliates, attribution, funnels, dashboards, offer testing."
+  },
+  {
+    "slug": "devops-for-creators",
+    "title": "DevOps for Creators",
+    "description": "Vercel, CI/CD, secrets, reliability, performance, costs."
+  }
+]
