@@ -1,0 +1,362 @@
+{
+  "automation-backlog-prioritization-framework": {
+    "outgoing": [
+      "practical-blueprint-first-win",
+      "automation-roi-calculator-simple-model",
+      "offer-testing-framework",
+      "automation-data-readiness-audit"
+    ],
+    "backlink_suggestions": [
+      "practical-blueprint-first-win",
+      "automation-roi-calculator-simple-model"
+    ]
+  },
+  "automation-data-readiness-audit": {
+    "outgoing": [
+      "automation-backlog-prioritization-framework",
+      "production-guardrails-for-ai",
+      "n8n-queues-with-redis-webhooks",
+      "designing-evaluation-loops"
+    ],
+    "backlink_suggestions": [
+      "production-guardrails-for-ai",
+      "automation-backlog-prioritization-framework"
+    ]
+  },
+  "automation-risk-matrix-small-teams": {
+    "outgoing": [
+      "production-guardrails-for-ai",
+      "automation-backlog-prioritization-framework",
+      "agent-routing-patterns",
+      "ci-for-content-repos"
+    ],
+    "backlink_suggestions": [
+      "agent-routing-patterns",
+      "production-guardrails-for-ai"
+    ]
+  },
+  "automation-pilot-to-scale-playbook": {
+    "outgoing": [
+      "automation-backlog-prioritization-framework",
+      "production-guardrails-for-ai",
+      "vercel-content-sites-previews-edge-caching",
+      "automation-governance-operating-models"
+    ],
+    "backlink_suggestions": [
+      "vercel-content-sites-previews-edge-caching",
+      "automation-governance-operating-models"
+    ]
+  },
+  "automation-governance-operating-models": {
+    "outgoing": [
+      "automation-pilot-to-scale-playbook",
+      "automation-risk-matrix-small-teams",
+      "content-brief-generator",
+      "ci-for-content-repos"
+    ],
+    "backlink_suggestions": [
+      "automation-risk-matrix-small-teams",
+      "content-brief-generator"
+    ]
+  },
+  "n8n-oauth-refresh-and-rotation": {
+    "outgoing": [
+      "n8n-queues-with-redis-webhooks",
+      "n8n-webhook-security-zero-trust",
+      "ci-for-content-repos",
+      "automation-governance-operating-models"
+    ],
+    "backlink_suggestions": [
+      "n8n-queues-with-redis-webhooks",
+      "n8n-triggers-webhooks-foundation"
+    ]
+  },
+  "n8n-pagination-and-rate-limits-playbook": {
+    "outgoing": [
+      "n8n-queues-with-redis-webhooks",
+      "airtable-vs-sheets-as-n8n-datastore",
+      "automation-pilot-to-scale-playbook",
+      "n8n-worker-scaling-blueprint"
+    ],
+    "backlink_suggestions": [
+      "n8n-queues-with-redis-webhooks",
+      "n8n-worker-scaling-blueprint"
+    ]
+  },
+  "n8n-error-dlq-patterns": {
+    "outgoing": [
+      "n8n-queues-with-redis-webhooks",
+      "automation-data-readiness-audit",
+      "ci-for-content-repos",
+      "n8n-pagination-and-rate-limits-playbook"
+    ],
+    "backlink_suggestions": [
+      "n8n-queues-with-redis-webhooks",
+      "automation-data-readiness-audit"
+    ]
+  },
+  "n8n-webhook-security-zero-trust": {
+    "outgoing": [
+      "n8n-triggers-webhooks-foundation",
+      "n8n-queues-with-redis-webhooks",
+      "automation-risk-matrix-small-teams",
+      "offer-testing-framework"
+    ],
+    "backlink_suggestions": [
+      "n8n-triggers-webhooks-foundation",
+      "automation-risk-matrix-small-teams"
+    ]
+  },
+  "n8n-worker-scaling-blueprint": {
+    "outgoing": [
+      "n8n-triggers-webhooks-foundation",
+      "n8n-queues-with-redis-webhooks",
+      "automation-pilot-to-scale-playbook",
+      "cwv-tuning-for-mdx-sites"
+    ],
+    "backlink_suggestions": [
+      "vercel-content-sites-previews-edge-caching",
+      "n8n-pagination-and-rate-limits-playbook"
+    ]
+  },
+  "multi-agent-tool-selection-framework": {
+    "outgoing": [
+      "agent-routing-patterns",
+      "designing-evaluation-loops",
+      "automation-risk-matrix-small-teams",
+      "knowledge-graph-context-for-agents"
+    ],
+    "backlink_suggestions": [
+      "agent-routing-patterns",
+      "designing-evaluation-loops"
+    ]
+  },
+  "human-approval-gates-for-agents": {
+    "outgoing": [
+      "designing-evaluation-loops",
+      "automation-governance-operating-models",
+      "agent-memory-architectures",
+      "video-to-carousels-and-shorts"
+    ],
+    "backlink_suggestions": [
+      "automation-governance-operating-models",
+      "agent-memory-architectures"
+    ]
+  },
+  "agent-cost-latency-optimization": {
+    "outgoing": [
+      "multi-agent-tool-selection-framework",
+      "designing-evaluation-loops",
+      "automation-roi-calculator-simple-model",
+      "cwv-tuning-for-mdx-sites"
+    ],
+    "backlink_suggestions": [
+      "designing-evaluation-loops",
+      "automation-roi-calculator-simple-model"
+    ]
+  },
+  "agent-simulation-test-harness": {
+    "outgoing": [
+      "human-approval-gates-for-agents",
+      "production-guardrails-for-ai",
+      "agent-cost-latency-optimization",
+      "automation-data-readiness-audit"
+    ],
+    "backlink_suggestions": [
+      "production-guardrails-for-ai",
+      "automation-data-readiness-audit"
+    ]
+  },
+  "knowledge-graph-context-for-agents": {
+    "outgoing": [
+      "multi-agent-tool-selection-framework",
+      "human-approval-gates-for-agents",
+      "programmatic-topic-hubs",
+      "attribution-for-creators"
+    ],
+    "backlink_suggestions": [
+      "agent-memory-architectures",
+      "programmatic-topic-hubs"
+    ]
+  },
+  "content-refresh-playbook": {
+    "outgoing": [
+      "content-brief-generator",
+      "affiliate-offers-that-fit",
+      "automation-backlog-prioritization-framework",
+      "newsletter-automation-blueprint"
+    ],
+    "backlink_suggestions": [
+      "content-brief-generator",
+      "affiliate-offers-that-fit"
+    ]
+  },
+  "ai-editorial-style-guide": {
+    "outgoing": [
+      "content-brief-generator",
+      "affiliate-offers-that-fit",
+      "automation-governance-operating-models",
+      "ci-for-content-repos"
+    ],
+    "backlink_suggestions": [
+      "content-brief-generator",
+      "ci-for-content-repos"
+    ]
+  },
+  "content-localization-ops": {
+    "outgoing": [
+      "ai-editorial-style-guide",
+      "content-brief-generator",
+      "n8n-queues-with-redis-webhooks",
+      "attribution-for-creators"
+    ],
+    "backlink_suggestions": [
+      "ai-editorial-style-guide",
+      "attribution-for-creators"
+    ]
+  },
+  "social-copy-variations-factory": {
+    "outgoing": [
+      "ai-editorial-style-guide",
+      "content-brief-generator",
+      "offer-testing-framework",
+      "video-to-carousels-and-shorts"
+    ],
+    "backlink_suggestions": [
+      "offer-testing-framework",
+      "video-to-carousels-and-shorts"
+    ]
+  },
+  "newsletter-automation-blueprint": {
+    "outgoing": [
+      "content-refresh-playbook",
+      "n8n-queues-with-redis-webhooks",
+      "affiliate-offers-that-fit",
+      "attribution-for-creators"
+    ],
+    "backlink_suggestions": [
+      "n8n-queues-with-redis-webhooks",
+      "attribution-for-creators"
+    ]
+  },
+  "subscription-pricing-analytics-playbook": {
+    "outgoing": [
+      "offer-testing-framework",
+      "content-refresh-playbook",
+      "attribution-for-creators",
+      "automation-roi-calculator-simple-model"
+    ],
+    "backlink_suggestions": [
+      "offer-testing-framework",
+      "attribution-for-creators"
+    ]
+  },
+  "landing-page-conversion-instrumentation": {
+    "outgoing": [
+      "attribution-for-creators",
+      "offer-testing-framework",
+      "cwv-tuning-for-mdx-sites",
+      "social-copy-variations-factory"
+    ],
+    "backlink_suggestions": [
+      "cwv-tuning-for-mdx-sites",
+      "offer-testing-framework"
+    ]
+  },
+  "creator-analytics-stack-blueprint": {
+    "outgoing": [
+      "attribution-for-creators",
+      "offer-testing-framework",
+      "programmatic-topic-hubs",
+      "automation-backlog-prioritization-framework"
+    ],
+    "backlink_suggestions": [
+      "attribution-for-creators",
+      "programmatic-topic-hubs"
+    ]
+  },
+  "cohort-revenue-forecasting": {
+    "outgoing": [
+      "creator-analytics-stack-blueprint",
+      "subscription-pricing-analytics-playbook",
+      "newsletter-automation-blueprint",
+      "agent-simulation-test-harness"
+    ],
+    "backlink_suggestions": [
+      "subscription-pricing-analytics-playbook",
+      "creator-analytics-stack-blueprint"
+    ]
+  },
+  "monetization-consent-governance": {
+    "outgoing": [
+      "affiliate-offers-that-fit",
+      "landing-page-conversion-instrumentation",
+      "automation-governance-operating-models",
+      "newsletter-automation-blueprint"
+    ],
+    "backlink_suggestions": [
+      "affiliate-offers-that-fit",
+      "automation-governance-operating-models"
+    ]
+  },
+  "content-repo-secrets-rotation": {
+    "outgoing": [
+      "ci-for-content-repos",
+      "automation-governance-operating-models",
+      "n8n-webhook-security-zero-trust",
+      "content-refresh-playbook"
+    ],
+    "backlink_suggestions": [
+      "ci-for-content-repos",
+      "n8n-webhook-security-zero-trust"
+    ]
+  },
+  "mdx-site-observability-stack": {
+    "outgoing": [
+      "vercel-content-sites-previews-edge-caching",
+      "ci-for-content-repos",
+      "cwv-tuning-for-mdx-sites",
+      "agent-cost-latency-optimization"
+    ],
+    "backlink_suggestions": [
+      "vercel-content-sites-previews-edge-caching",
+      "cwv-tuning-for-mdx-sites"
+    ]
+  },
+  "content-rollbacks-disaster-recovery": {
+    "outgoing": [
+      "vercel-content-sites-previews-edge-caching",
+      "automation-pilot-to-scale-playbook",
+      "mdx-site-observability-stack",
+      "ci-for-content-repos"
+    ],
+    "backlink_suggestions": [
+      "vercel-content-sites-previews-edge-caching",
+      "automation-pilot-to-scale-playbook"
+    ]
+  },
+  "accessibility-automation-content-sites": {
+    "outgoing": [
+      "ai-editorial-style-guide",
+      "ci-for-content-repos",
+      "cwv-tuning-for-mdx-sites",
+      "automation-governance-operating-models"
+    ],
+    "backlink_suggestions": [
+      "ai-editorial-style-guide",
+      "ci-for-content-repos"
+    ]
+  },
+  "edge-caching-cost-optimization": {
+    "outgoing": [
+      "vercel-content-sites-previews-edge-caching",
+      "mdx-site-observability-stack",
+      "agent-cost-latency-optimization",
+      "landing-page-conversion-instrumentation"
+    ],
+    "backlink_suggestions": [
+      "vercel-content-sites-previews-edge-caching",
+      "mdx-site-observability-stack"
+    ]
+  }
+}
