@@ -1,0 +1,176 @@
+---
+title: "Agent Routing Patterns: When and How to Split Responsibilities"
+slug: "agent-routing-patterns"
+date: "2025-10-14"
+lastReviewed: "2025-10-14"
+authorName: "Cyber Income Innovators Editorial"
+authorRole: "Automation Engineer"
+description: "Choose the right routing pattern to coordinate AI agents, tools, and humans without losing control of cost or quality."
+category: "multi-agent-orchestration"
+tags: ["multi-agent", "routing", "governance"]
+ogTitle: "Design Smarter Agent Routing"
+ogDescription: "A field guide to splitting responsibilities across AI agents and humans."
+canonical: "https://example.com/posts/agent-routing-patterns"
+disclosure: ""
+aiAssistance: true
+sources:
+  - "https://arxiv.org/abs/2308.08155"
+  - "https://docs.anthropic.com/en/docs/build-with-claude/work-with-tool-use"
+draft: false
+---
+
+## TL;DR
+
+- Choose a routing pattern based on decision complexity, risk, and latency tolerance; one size rarely fits every workflow.
+- Classifier-to-specialist handoffs shine when you have consistent taxonomy, while tool-triggered hops excel for deterministic actions.
+- Introduce queues, human gates, and evaluation loops to keep multi-agent systems observable and auditable.
+- Control cost and latency by budgeting tokens, instrumenting retries, and defining clear exit criteria for each agent.
+
+## The Why: Split Responsibilities Without Splitting Accountability
+
+Multi-agent orchestration promises leverage—specialist agents, deterministic tools, and humans collaborating toward a shared KPI. But it can also create chaos if routing rules are implicit or fragile. This guide helps you design routing architectures that balance autonomy with governance, building on the foundational automation work described in ["The Practical Blueprint for AI Automation"](../ai-automation-foundations/practical-blueprint-first-win.mdx). Treat each pattern as a modular building block that you can compose as your automation program matures.
+
+## Pattern 1: Classifier → Specialist Handoffs
+
+### When to Use
+
+- You have a labeled taxonomy of intents or case types.
+- Specialists (agents or humans) excel at narrow tasks—e.g., billing, tech support, or compliance reviews.
+- The cost of misrouting is moderate and correctable via reassignment.
+
+### How It Works
+
+1. **Classifier agent** ingests the request, extracts features, and predicts the best route.
+2. **Routing policy** uses confidence thresholds. High-confidence routes go directly to the specialist; low-confidence cases trigger human review.
+3. **Specialist agent/human** executes the task, updates status, and returns outcomes for feedback.
+
+### Implementation Tips
+
+- Use few-shot prompts with explicit taxonomy definitions to train the classifier agent.
+- Maintain a routing table in a database so you can change destinations without redeploying prompts.
+- Log every route with confidence scores to identify drift.
+
+### Risks
+
+- **Taxonomy rot:** As products evolve, the classifier may misroute new patterns. Schedule quarterly taxonomy reviews.
+- **Feedback loops:** Specialists must report back misclassifications to retrain the classifier.
+
+## Pattern 2: Tool-Triggered Hops
+
+### When to Use
+
+- Certain actions must always happen after specific signals, such as updating a CRM or provisioning access.
+- You need deterministic execution with audit trails.
+
+### How It Works
+
+1. **Primary agent** monitors the conversation or workflow context.
+2. When a trigger condition occurs (e.g., `customer_intent == upgrade`), the agent calls a tool or hands off to a tool-specialist agent.
+3. The tool executes, returns status, and the primary agent updates the user or pipeline.
+
+### Implementation Tips
+
+- Define tool schemas using OpenAPI or JSON Schema. This helps agents call tools reliably.
+- Set timeout and retry policies per tool to prevent cascading failures.
+- Log tool calls separately for security review.
+
+### Risks
+
+- **Tool sprawl:** Too many tools complicate maintenance. Prune quarterly and consolidate duplicates.
+- **Over-reliance on LLM reasoning:** If an action is critical, consider hard-coded rules or human confirmation.
+
+## Pattern 3: Queue Fan-Out and Aggregation
+
+### When to Use
+
+- You need to process large volumes (e.g., hundreds of leads per hour) with parallel agents.
+- Work items can be processed independently.
+
+### How It Works
+
+1. **Ingress agent** validates the request, assigns metadata, and writes to a queue.
+2. **Worker agents** consume messages, execute specialized tasks, and push results to a datastore.
+3. **Aggregator agent** compiles results, checks for completeness, and triggers downstream actions.
+
+### Implementation Tips
+
+- Use queues that support visibility timeouts to handle failures gracefully.
+- Instrument backlog metrics. Sudden growth signals throughput issues or downstream outages.
+- Implement circuit breakers: if failure rate exceeds thresholds, pause consumption and alert humans.
+
+### Risks
+
+- **Lost updates:** Without idempotent processing, retries may create duplicate actions. Apply the idempotency lessons from ["n8n Triggers & Webhooks 101"](../n8n-workflows-integrations/n8n-triggers-webhooks-foundation.mdx).
+- **Starvation:** Ensure queue partitioning balances load across agents.
+
+## Pattern 4: Human Gates and Escalations
+
+### When to Use
+
+- Regulatory or brand-sensitive decisions require human oversight.
+- Agents need periodic calibration via subject-matter experts.
+
+### How It Works
+
+1. **Pre-gate agent** collects context and presents a structured summary.
+2. **Human reviewer** approves, rejects, or requests changes via a review console.
+3. **Post-gate agent** executes the decision or loops back with additional questions.
+
+### Implementation Tips
+
+- Provide reviewers with templated checklists and confidence scores so they can act quickly.
+- Capture reviewer feedback as training data for future automation.
+- Track review SLAs and escalate if queues grow beyond thresholds.
+
+### Risks
+
+- **Reviewer fatigue:** Rotate assignments and automate routine approvals as confidence grows.
+- **Shadow processes:** If humans bypass the system, routing data becomes unreliable. Maintain consistent communication and training.
+
+## Managing Memory and State
+
+Routing fails when agents forget context. Implement shared state thoughtfully:
+
+- **Vector stores or memory graphs:** Store conversation embeddings but enforce retention limits for privacy.
+- **Session IDs:** Pass a unique identifier through every hop so logs stitch together.
+- **State snapshots:** Persist critical state at each decision point so you can replay incidents.
+
+Evaluate whether memory should be centralized (shared store) or decentralized (per-agent caches). Centralization simplifies oversight but may introduce latency.
+
+## Evaluation Loops That Keep You Honest
+
+Treat multi-agent systems like evolving products:
+
+- **Offline evaluation:** Replay historical transcripts through updated routing logic to measure improvements before deploying.
+- **Online A/B testing:** Run new routing policies on a small slice of traffic, monitoring quality and cost.
+- **Human spot checks:** Sample outputs weekly, focusing on edge cases and low-confidence decisions.
+- **Incident reviews:** After every major incident, update routing playbooks and add automated tests.
+
+Maintain an evaluation backlog that aligns with your automation roadmap. Each experiment should link back to the KPI defined in your initial blueprint.
+
+## Cost and Latency Controls
+
+Routing more agents increases token usage and latency. Keep both under control:
+
+- **Token budgets:** Set per-agent token caps and log usage. Terminate conversations that exceed thresholds without progress.
+- **Timeout policies:** Define maximum response times. If an agent stalls, route to a fallback or escalate to a human.
+- **Caching responses:** Cache deterministic tool outputs. For example, reuse recent pricing pulls for five minutes.
+- **Batching:** Where possible, batch similar tasks before invoking high-cost models.
+
+Tie cost controls to business metrics. If latency spikes threaten customer experience, trigger alerts and throttle non-essential routes.
+
+## Troubleshooting & Pitfalls
+
+- **Unclear ownership:** Assign a product owner to every routing policy. Without ownership, changes stall.
+- **Invisible loops:** Instrument traces to detect when agents bounce tasks back and forth.
+- **Lack of rollback:** Version your prompts, tools, and routing tables. Keep a rollback plan similar to the deployment playbook described in ["Vercel for Content Sites: Previews, Edge, and Caching Basics"](../devops-for-creators/vercel-content-sites-previews-edge-caching.mdx).
+- **Security drift:** Periodically audit permissions. Agents should only access the tools they need.
+
+## Call to Action
+
+Map your current automation workflow against these patterns and pick one pilot route to refactor. Document the decision tree, instrument traces, and schedule your first evaluation loop next week.
+
+## Sources
+
+- https://arxiv.org/abs/2308.08155
+- https://docs.anthropic.com/en/docs/build-with-claude/work-with-tool-use
