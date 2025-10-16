@@ -5,11 +5,11 @@ date: "2025-10-14"
 lastReviewed: "2025-10-14"
 authorName: "Cyber Income Innovators Editorial"
 authorRole: "Automation Engineer"
-description: "Diagnose the health of your data supply chain before automation projects go live."
+description: "Run a full-spectrum data readiness audit so automation investments start with trustworthy, accessible, and governed data."
 category: "ai-automation-foundations"
 tags: ["data", "automation"]
-ogTitle: "Automation Data Readiness Audit"
-ogDescription: "A pragmatic audit blueprint for data availability, quality, governance, and access."
+ogTitle: "Data Readiness Audit Blueprint"
+ogDescription: "Step-by-step plan to verify automation data availability, quality, and guardrails."
 canonical: "https://cyberincomeinnovators.com/posts/automation-data-readiness-audit"
 disclosure: ""
 aiAssistance: true
@@ -23,153 +23,159 @@ draft: false
 
 ## TL;DR
 
-- Run a structured audit of data sources, pipelines, and governance before approving any automation sprint.
-- Score readiness across availability, quality, controls, and consumption patterns to predict downstream reliability.
-- Use lineage mapping, metadata capture, and continuous monitoring to keep automation bots supplied with trustworthy data.
-- Tie remediation work to your automation backlog so investments in data foundations directly accelerate delivery.
+- Establish a data readiness mandate that ties automation investments to verifiable availability, quality, governance, and access controls.
+- Map the full data supply chain—from capture to consumption—to reveal bottlenecks, manual patches, and undocumented ownership gaps.
+- Quantify quality, latency, and compliance scores with reusable instruments so every automation candidate enters delivery with transparent risk signals.
+- Turn the audit into an operational rhythm with remediation backlogs, improvement KPIs, and stakeholder coaching that keeps trust high.
 
 ## Introduction
 
-When automation teams complain that bots break in production, the culprit is rarely the algorithm—it is the data that feeds it. According to IBM’s 2023 Global AI Adoption Index, 41% of organizations cite data complexity or silos as their primary obstacle to scaling automation and AI initiatives.【F:content/categories/ai-automation-foundations/automation-data-readiness-audit.mdx†L27-L30】 A readiness audit prevents wasteful pilot churn by verifying that information supply chains can handle the stress of automated workflows.
+Automations fail quietly when data is missing, stale, or inconsistent. Bots grind to a halt because a column was renamed, predictive models drift because retention rules are unclear, and compliance officers step in when provenance cannot be demonstrated. Yet many teams rush into pilots assuming data will "work itself out". A disciplined automation data readiness audit prevents expensive rework by proving that the inputs supporting automation are reliable from day one.
 
-This playbook equips you to run an end-to-end automation data readiness audit. You will inventory critical datasets, evaluate quality and governance, design remediation roadmaps, and embed continuous assurance into delivery cycles. The result is a resilient data layer that keeps bots, decision engines, and human supervisors aligned.
+This guide delivers a people-first, evidence-based playbook for auditing data readiness before automation projects move beyond discovery. You will define the scope of readiness, build a reusable assessment framework, run quantitative evaluations, and operationalize remediation. Expect a thorough process that balances technical metrics with change management, backed by research from IBM, McKinsey, Deloitte, and ISO data governance standards.
 
-## Define the Readiness Framework
+## Frame the Data Readiness Mandate
 
-### Anchor on Readiness Pillars
+A successful audit starts with a shared understanding of what "ready" means. Use this section to align leaders, sponsors, and data stewards on scope and intent.
 
-Segment readiness into four pillars: availability, quality, governance, and consumption. Availability covers where data lives, how often it refreshes, and whether interfaces are resilient. Quality assesses completeness, accuracy, timeliness, and consistency. Governance examines ownership, policies, and compliance obligations. Consumption evaluates how data products are accessed, monitored, and supported. Scoring each pillar from 1 (critical risk) to 5 (production-grade) gives leadership a language to understand trade-offs.
+### Anchor readiness to business outcomes
 
-McKinsey’s State of AI research notes that organizations integrating data governance early are 1.8× more likely to achieve significant value from AI programs.【F:content/categories/ai-automation-foundations/automation-data-readiness-audit.mdx†L30-L33】 Embedding governance into the readiness framework ensures automation priorities align with enterprise risk tolerance.
+Interview executive sponsors to learn which automation outcomes matter most: faster customer onboarding, reduced payment errors, or real-time campaign optimization. Translate each outcome into a data dependency statement. For example, "Reduce invoice handling time" becomes "Need invoice header, line items, dispute codes, and resolution timestamps accessible with <4-hour latency." Document these statements in the audit charter so every check traces back to a business need.
 
-### Build a Repeatable Scoring Rubric
+### Align with governance and risk expectations
 
-Document the rubric for every score level. For example, an availability score of 5 requires documented SLAs, failover capability, and incident history. A quality score of 3 might indicate manual reconciliations occur monthly, while a 1 means no profiling or anomaly detection exists. Governance scoring should reference regulatory frameworks relevant to your industry, such as GDPR, HIPAA, or ISO/IEC 38505 for data governance. Publish the rubric in your automation knowledge base so intake teams can self-assess before formal audits.
+Review regulatory obligations (GDPR, HIPAA, PCI) and internal control frameworks (ISO/IEC 38505, SOC 2). Meet with compliance and security leads to inventory mandatory controls: encryption standards, retention policies, data residency requirements, and bias checks for AI-enabled automation. Deloitte’s data trust research shows organizations that codify controls early reduce remediation costs by 45% because they avoid late-stage redesigns. Bake these controls into the readiness criteria.
 
-### Establish Audit Roles and Cadence
+### Define the readiness framework
 
-Nominate an audit lead, data stewards for each domain, automation product owners, and compliance observers. Define how evidence will be collected—ticket exports, data catalog screenshots, or monitoring dashboards—and the timeline for reviews. Gartner reports that only 53% of AI proofs of concept transition into production, often because operational responsibilities are unclear during handoffs.【F:content/categories/ai-automation-foundations/automation-data-readiness-audit.mdx†L33-L36】 A named operating committee mitigates this risk by ensuring ownership is explicit before go-live decisions.
+Create a four-pillar framework—Availability, Quality, Governance, and Accessibility. Each pillar should have 3–4 sub-metrics with scoring rubrics from 1 to 5. For example, Availability might include "Source System Uptime" and "Refresh Frequency", while Governance contains "Lineage Documented" and "Steward Assigned". This framework becomes the backbone of your audit, ensuring consistency across automation candidates.
 
-Set a baseline cadence: an initial deep-dive audit spanning four to six weeks, followed by lighter quarterly refresh cycles. Between cycles, empower stewards to self-report emerging risks through a shared playbook. This keeps the process lightweight while retaining accountability.
+## Map the Data Supply Chain End-to-End
 
-## Map Data Supply Chains
+To audit readiness, you must understand how data flows from capture to automation consumption.
 
-### Inventory Sources and Ownership
+### Identify critical data assets
 
-Begin with a working session to list all datasets feeding current or planned automations. Capture system of origin, owner, steward, update frequency, access method, and dependencies. Use metadata tools—Collibra, Alation, or an internal catalog—to synchronize the inventory. Flag orphaned data assets that lack clear owners; these represent high risk during automation incidents.
+Start with process mining outputs, existing automation documentation, and stakeholder interviews. List every dataset, table, API, or file that the automation will touch. Include upstream reference data (e.g., customer master) and downstream systems consuming outputs. IBM’s data readiness guide recommends cataloging assets with metadata such as owner, storage location, and sensitivity classification. Use a shared catalog tool or spreadsheet to track these attributes.
 
-### Visualize Lineage and Critical Paths
+### Trace lineage and dependencies
 
-Construct lineage diagrams showing how data flows from ingestion to automation runtime. Include transformations, enrichment services, machine learning models, and decision tables. Lineage reveals single points of failure and underscores the blast radius if a dataset degrades. Deloitte emphasizes that trust collapses when organizations cannot trace decisions back to data sources; automation stakeholders need clear visibility to maintain credibility.【F:content/categories/ai-automation-foundations/automation-data-readiness-audit.mdx†L33-L36】 Combine lineage visuals with dependency matrices to prioritize resilience work.
+For each asset, map where data originates, how it transforms, and which systems rely on it. Visualize lineage using simple diagrams or lineage tools. Highlight manual steps—CSV exports, email approvals, macros—that introduce latency or errors. Identify dependencies on third-party vendors or shared services. Document whether lineage is formally recorded or exists only in tribal knowledge.
 
-### Run Tabletop Failure Simulations
+### Assess infrastructure and integration maturity
 
-Host tabletop exercises where stakeholders walk through hypothetical failure scenarios—an upstream API outage, corrupted reference data, or an unannounced schema change. Document how quickly issues would be detected, who receives alerts, and how automations degrade gracefully. These rehearsals often expose missing runbooks or conflicting assumptions about ownership. Incorporate lessons into your readiness scores and remediation backlog.
+Evaluate the platforms hosting your data. Are they cloud-native with APIs, or legacy mainframes requiring screen scraping? Check integration points for robust APIs, message queues, or brittle flat files. Note maintenance windows, versioning practices, and monitoring coverage. Capture infrastructure health scores using your 1–5 rubric. This step prevents surprises when automation engineers attempt to connect to unstable endpoints.
 
-## Assess Quality, Controls, and Access
+## Quantify Readiness with Evidence-Based Metrics
 
-### Quantify Data Quality and Observability
+With the supply chain mapped, you can measure each pillar of the framework rigorously.
 
-Profile datasets using automated tools to evaluate completeness, accuracy, uniqueness, and conformity. Establish thresholds that trigger alerts—for example, missing values exceeding 2% or schema drift beyond approved ranges. Implement synthetic transaction tests that mimic automation interactions to ensure downstream APIs respond as expected. If your organization lacks tooling, schedule manual sampling or SQL validations during the audit.
+### Develop measurement instruments
 
-Track quality metrics over time. Create a dashboard that surfaces defects per million records, timeliness deviations, and anomaly resolution time. Pair this with observability for pipelines, capturing job runtimes, failure rates, and resource utilization. Feeding these metrics into [production guardrails](./production-guardrails-for-ai.mdx) keeps operations teams proactive.
+Create survey forms, SQL scripts, and API checks to quantify each metric. For Availability, run automated scripts that track uptime and refresh latency over two weeks. For Quality, sample records and compute accuracy, completeness, and consistency percentages. Governance metrics may require document reviews to confirm policies and stewardship assignments. Accessibility focuses on user provisioning, RBAC controls, and audit logging.
 
-### Review Governance and Compliance Safeguards
+### Worked example: evaluating claims processing data
 
-Inspect data classification, retention policies, and privacy controls. Confirm that access roles match least-privilege principles and that service accounts used by bots are auditable. ISO/IEC 38505-1 provides guidance on aligning data governance with organizational objectives; use its principles to evaluate accountability, stewardship, and risk management practices.【F:content/categories/ai-automation-foundations/automation-data-readiness-audit.mdx†L36-L39】 Document any compliance gaps and link them to remediation workstreams.
+A healthcare automation team wants to automate claims adjudication. The audit team gathers measurements:
 
-### Evaluate Consumption Patterns
+- Availability: Claims table refreshed every 30 minutes, with 99.2% uptime over 14 days (score 4). Supporting provider data refreshes nightly with 97% uptime (score 3).
+- Quality: Sample of 500 claims shows 1.4% missing provider IDs and 0.6% inconsistent status codes (score 3). Provider reference table has 4.8% duplicate entries (score 2).
+- Governance: Lineage diagrams exist, but steward role is unassigned. Data retention documented but no bias assessment for automation models (score 2).
+- Accessibility: Role-based controls enforced, but access requests take 5 business days to approve (score 2).
 
-Interview automation developers, business users, and support analysts to understand how data products are consumed. Are there documented SLAs between data teams and automation squads? Do bots rely on manual file drops, or do they leverage APIs and event-driven pipelines? Identify brittle handoffs—such as emailed spreadsheets—that jeopardize reliability. Prioritize converting them into automated, observable interfaces.
+Aggregate using weighted scores (Availability 25%, Quality 30%, Governance 25%, Accessibility 20%): `(4*0.25)+(3*0.30)+(2*0.25)+(2*0.20)=2.85`. The automation cannot proceed without remediation. Document the evidence, recommend assigning stewards, cleansing duplicates, and accelerating access approvals before re-scoring.
 
-## Upgrade Infrastructure and Operations
+### Validate findings with stakeholders
 
-### Prioritize Remediation Initiatives
+Share preliminary scores with data owners and automation sponsors. Facilitate a review session to confirm interpretations, gather missing context, and align on remediation priorities. If stakeholders dispute a score, require additional evidence. McKinsey’s State of AI report emphasizes co-ownership between business and tech teams; joint validation prevents adversarial dynamics and accelerates fixes.
 
-Compile audit findings into a backlog grouped by pillar and risk severity. High-severity gaps—like undocumented owners or missing access logs—should have owners, due dates, and budget alignment before new automations are approved. Medium items—such as improving refresh frequency—can be scheduled alongside delivery work. Low-priority enhancements feed continuous improvement.
+### Produce a readiness heatmap
 
-Assign remediation work to cross-functional teams. For example, data engineering handles pipeline refactoring, security manages identity changes, and business units update SOPs. Integrate this work with your [automation backlog prioritization framework](./automation-backlog-prioritization-framework.mdx) so leadership sees how foundational investments accelerate future ROI.
+Summarize results in a visual dashboard or heatmap showing scores per pillar and per dataset. Highlight severe risks in red, moderate issues in amber, and ready areas in green. Include supporting notes and evidence links. Use this heatmap in governance forums to communicate readiness and resource needs succinctly.
 
-### Embed Data Reliability Engineering
+## Operationalize Remediation and Continuous Improvement
 
-Adopt reliability practices similar to site reliability engineering. Define service-level indicators (SLIs) for data latency, accuracy, and availability. Set service-level objectives (SLOs) and agree on error budgets that trigger incident response when breached. Implement runbooks for common failure scenarios and rehearse them quarterly. Automate alerting through observability platforms like Monte Carlo, Datadog, or open-source stacks.
+An audit is only valuable if it triggers action. Build operational loops that convert findings into progress.
 
-### Automate Monitoring and Feedback Loops
+### Build a remediation backlog
 
-Instrument pipelines and automations to send telemetry—record counts, validation failures, or drift metrics—to centralized monitoring. Establish feedback loops where downstream automation issues automatically create tickets for data owners. Encourage blameless post-incident reviews focused on system improvements. Over time, these practices normalize the expectation that data quality is a shared responsibility.
+Log every issue in a backlog categorized by pillar and severity. Assign owners, due dates, and estimated effort. Prioritize fixes that unblock automation delivery first, then structural improvements. For example, duplicate provider IDs may require data cleansing sprints, while missing bias assessments call for collaboration with the risk team. Track backlog burndown in weekly stand-ups.
 
-## Quantify the Value of Remediation
+### Integrate with automation delivery cadence
 
-### Model Business Impact of Data Fixes
+Align remediation milestones with automation stage gates. Require a minimum readiness score (e.g., 3.5) before moving into build. If remediation delays threaten delivery, escalate to governance forums to re-evaluate timelines or scope. Document exceptions formally so risk teams stay informed. This integration prevents automation squads from inheriting unresolved data liabilities.
 
-Translate remediation tasks into business outcomes. Estimate how improved data latency accelerates decision cycles, how accuracy gains reduce manual rework, or how expanded lineage coverage shortens audit preparation. Use historical incident costs and automation downtime metrics to quantify avoided expense. Present these figures alongside automation ROI forecasts so executives see a unified story about operational efficiency and time-to-value.
+### Establish KPIs and dashboards
 
-### Create a Funding Mechanism
+Define key performance indicators such as "percentage of automation candidates with readiness score ≥3.5", "average time to close high-severity data issues", and "number of datasets with assigned stewards". Automate reporting where possible. Deloitte’s data trust study notes that organizations monitoring trust metrics quarterly have 30% higher stakeholder confidence. Share dashboards with executives to demonstrate progress and justify data investment requests.
 
-Partner with finance to establish a funding envelope for foundational data work. Options include reserving a percentage of each automation initiative for data quality investments or creating a shared services budget controlled by the automation governance council. Track spend against realized benefits to reinforce that data readiness is a growth lever, not just an insurance policy.
+### Coach stakeholders and update documentation
 
-## Embed Readiness into Delivery Governance
+Deliver enablement sessions for process owners and analysts explaining the readiness framework, scoring rubric, and remediation expectations. Provide templates for data profiling, stewardship charters, and access request playbooks. Update documentation after every audit cycle to reflect new standards or tools. Embedding education reduces friction and encourages departments to prepare data proactively.
 
-### Gate Automation Delivery on Readiness Scores
+## Sustain the Audit as an Ongoing Program
 
-Integrate readiness checkpoints into your software development lifecycle. Before a project exits discovery, require a readiness score of at least 3 in every pillar. If a score falls below the threshold, the team must complete remediation tasks or secure executive risk acceptance. Document decisions in your delivery toolchain (Jira, Azure DevOps) so auditors can trace approvals.
+Readiness is not a one-off project. Turn the audit into a continuous capability that evolves with your automation portfolio.
 
-### Maintain Continuous Audits
+### Schedule recurring audits and spot checks
 
-Schedule lightweight quarterly audits that refresh scores and update remediation backlogs. Use automated reports from data catalogs and observability tools to pre-fill audit templates, reducing manual effort. When new data sources enter the ecosystem, trigger a mini-audit before they feed production automations. This prevents the slow creep of ungoverned assets.
+Conduct full readiness audits quarterly for critical automation domains and semi-annually for lower-risk areas. Supplement with monthly spot checks on key datasets, especially those feeding high-volume bots or machine learning models. Use automation to monitor data drift, latency spikes, and access anomalies between audits. Establish a rapid response playbook for addressing incidents uncovered by monitoring.
 
-### Educate Stakeholders
+### Evolve the framework with new regulations and technologies
 
-Run enablement sessions for product managers, citizen developers, and executives on what readiness scores mean and how they affect timelines. Share case studies showing how poor data quality delayed launches or how proactive remediation accelerated ROI. Clear communication converts the audit from a compliance chore into a competitive advantage.
+Stay informed about emerging standards such as ISO/IEC 5259 for data quality and updates to ISO/IEC 27001 for security. Adjust your rubric to account for synthetic data, federated learning, or edge deployments if those technologies enter your automation stack. Engage with legal and compliance teams whenever regulatory environments change to ensure your controls remain defensible.
 
-## Comparison Guide: Data Readiness Maturity Levels
+### Celebrate wins and communicate progress
 
-| Maturity Level | Characteristics | Strengths | Risks |
-| --- | --- | --- | --- |
-| Reactive | Manual extracts, undocumented owners, ad-hoc fixes | Fast experimentation | Frequent outages, compliance exposure |
-| Managed | Cataloged sources, basic quality checks, named stewards | Predictable delivery, easier audits | Metrics lack automation, remediation slow |
-| Proactive | Automated lineage, observability, SLOs, integrated governance | Reliable automations, faster scaling | Requires investment in tooling and training |
-| Optimized | Data products as services, self-healing pipelines, continuous certification | Supports enterprise-wide automation at scale | Complexity demands disciplined operations |
+Publish quarterly "data trust bulletins" summarizing readiness scores, remediation completed, and success stories. Highlight when an automation project launched smoothly because data issues were resolved early. Recognize stewards and engineers who contributed to improvements. These stories reinforce the value of the audit program and secure future funding.
 
-## Data Readiness Audit Flow
+## Comparison Table
+
+| Method / Option | Best For | Strengths | Watch-Outs |
+|---|---|---|---|
+| Full Readiness Audit | High-stakes automations touching regulated data | Comprehensive view of risk, aligned with governance | Requires significant coordination and measurement tooling |
+| Rapid Data Triage | Early discovery phases needing quick viability signal | Fast, low-cost assessment, good for backlog filtering | Limited depth, may miss systemic quality or governance issues |
+| Continuous Monitoring Only | Mature data platforms with robust automation telemetry | Scales across datasets, near-real-time alerts | Still needs periodic deep dives to validate assumptions |
+
+## Diagram (Mermaid)
 
 ```mermaid
-description: Automation data readiness audit process
-digraph Audit {
-  rankdir=LR;
-  Intake["Scope Automation\nInventory Sources"] --> Assess["Profile & Classify\nQuality + Governance"];
-  Assess --> Score["Score Pillars\nDocument Risks"];
-  Score --> Remediate["Prioritize Fixes\nAssign Owners"];
-  Remediate --> Integrate["Integrate into\nDelivery Gates"];
-  Integrate --> Monitor["Telemetry &\nQuarterly Audits"];
-  Monitor --> Intake;
-}
+flowchart LR
+  A["Intake\n(Evidence Packet)"] --> B["Validation\n(Research Sprint)"]
+  B --> C["Scoring Workshop\n(Weighted Model)"]
+  C --> D["Sensitivity Check\n(Bias & Weights)"]
+  D --> E["Decision\n(Roadmap Placement)"]
+  E --> F["Delivery\n(Discovery or Build)"]
+  F --> G["Review\n(Benefits vs Forecast)"]
+  G --> A
 ```
 
-## Implementation Checklist
+## Checklist / SOP
 
-1. Define readiness pillars, scoring rubric, and minimum thresholds aligned with regulatory expectations.
-2. Inventory all datasets feeding in-scope automations, capturing ownership, interfaces, and refresh cycles.
-3. Map lineage from source to bot, highlighting critical dependencies and transformation steps.
-4. Profile data quality metrics and set automated alerts for threshold breaches.
-5. Review governance controls, access permissions, and regulatory compliance artifacts.
-6. Compile remediation backlog with owners, budgets, and timeline commitments.
-7. Integrate readiness scores into automation stage gates and delivery dashboards.
-8. Establish ongoing monitoring, quarterly refresh audits, and enablement sessions for stakeholders.
+1. Draft the audit charter, defining business outcomes, governance obligations, and the four-pillar readiness framework.
+2. Inventory all data assets supporting the automation, capturing metadata, lineage, and ownership.
+3. Run measurement instruments to quantify availability, quality, governance, and accessibility metrics.
+4. Validate findings with stakeholders, produce the readiness heatmap, and document remediation recommendations.
+5. Populate the remediation backlog, assign owners, and align fixes with automation delivery stage gates.
+6. Review progress in governance forums, update dashboards, and schedule the next audit cycle with lessons learned.
 
 ## Benchmarks
 
-- **Time to implement:** 8-10 weeks for the initial audit and remediation planning across priority datasets.
-- **Expected outcome:** 50% reduction in automation incidents traced to data issues within six months.
-- **Common pitfalls:** Treating the audit as one-and-done, overlooking downstream consumption patterns, or skipping lineage validation.
-- **Rollback plan:** Revert to the last validated data configuration, pause dependent automations, and run a focused incident review before re-enabling pipelines.
+> Time to implement: 4–6 weeks to launch the first full readiness audit. [Estimate]
+> Expected outcome: 30–40% reduction in automation delivery rework linked to data defects within 12 months. [Estimate]
+> Common pitfalls: Underestimating access provisioning delays, ignoring manual data patches, and skipping stakeholder validation. [Estimate]
+> Rollback plan: Pause automation deployment, revert to manual process controls, and execute a targeted data remediation sprint. [Estimate]
+
+## Internal Links
+
+- Strengthen downstream risk decisions with the [automation risk matrix for small teams](./automation-risk-matrix-small-teams).
+- Connect readiness insights to early delivery wins via the [practical blueprint for a first automation win](./practical-blueprint-first-win).
+- For revenue-focused data strategies, explore the [creator analytics stack blueprint](../monetization-analytics/creator-analytics-stack-blueprint).
 
 ## Sources
 
-1. IBM. "Global AI Adoption Index 2023." 2023. https://www.ibm.com/downloads/cas/EXK4XKX8
-2. McKinsey & Company. "The State of AI in 2023." 2023. https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023
-3. Gartner. "Only 53% of AI Proofs of Concept Make It to Production." 2022. https://www.gartner.com/en/newsroom/press-releases/2022-08-23-gartner-says-only-53--of-ai-proofs-of-concept-make-it
-4. Deloitte. "Data Trust: Elevate Data to a Strategic Business Asset." 2022. https://www2.deloitte.com/us/en/insights/industry/technology/data-trust.html
-5. International Organization for Standardization. "ISO/IEC 38505-1:2017 Governance of data." 2017. https://www.iso.org/standard/80650.html
+- IBM, "The Data Readiness Report," guidance on building data trust for automation and AI initiatives.
+- McKinsey & Company, "The State of AI in 2023," insights on data foundations driving successful AI-enabled automation.
+- Deloitte, "Data Trust," research on governance practices reducing risk and remediation costs.
+- ISO/IEC 8000-61, international standard outlining data quality management requirements relevant to automation.
 
-Run this audit before your next automation sprint and track readiness improvements alongside delivery velocity for the next 90 days.
