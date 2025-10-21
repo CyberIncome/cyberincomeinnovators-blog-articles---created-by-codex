@@ -1,4 +1,3 @@
-````markdown
 # AGENTS.md
 
 **Purpose**  
@@ -355,4 +354,3 @@ flowchart LR
 }
 ===END OPS_METADATA===
 ```
-````
